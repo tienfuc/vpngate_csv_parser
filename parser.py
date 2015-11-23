@@ -7,14 +7,10 @@ import base64
 
 csv_vpngate = "http://www.vpngate.net/api/iphone/"
 response = requests.get(csv_vpngate)
-#response.encoding = 'ISO-8859-1'
 text_raw = response.text.encode("utf-8")
-#print (text)
 
-# remove *vpn_servers
 text_remove_1 = re.sub(r"\*vpn_servers\r\n", "", text_raw)
 text = re.sub(r"#HostName","HostName", text_remove_1)
-#print text
 
 csv_reader = csv.DictReader(StringIO.StringIO(text))
 count = 0
